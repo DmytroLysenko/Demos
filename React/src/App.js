@@ -3,6 +3,7 @@ import "./App.css";
 import List from "./List";
 import Clock from "./Clock";
 import Count from "./Count";
+import ComponentLifeCycles from "./ComponentLifeCycles";
 
 const list = [
   { id: 1, name: "one" },
@@ -19,6 +20,7 @@ function App() {
   return (
     <div className="App">
       <Clock initTime={new Date()} />
+      <ComponentLifeCycles />
       <Count />
       <List list={list} />
     </div>
