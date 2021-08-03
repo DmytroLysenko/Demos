@@ -1,18 +1,45 @@
 import React, { useState, useEffect } from "react";
 
-export default function Control({ onChange }) {
-  const [one, setOne] = useState(false);
-  const [two, setTwo] = useState(false);
-  const [three, setThree] = useState(false);
-  const [four, setFour] = useState(false);
+const styles = {
+  form: {
+    width: "fit-content",
+    margin: "0 auto",
+    textAlign: "right",
+  },
+  label: {
+    display: "block",
+  },
+};
 
-  useEffect(() => {
-    onChange({ one, two, three, four });
-  }, [one, two, three, four]);
+export default function Control({ onChange, categories }) {
+  // useEffect(() => {
+  //   onChange({ one, two, three, four });
+  // }, [one, two, three, four]);
+
+  const handleChange = (e) => {
+    const elements = e.currentTarget.elements;
+    const elementsKeys = Object.keys(elements).filter((key) =>
+      Number.isNaN(key - 0)
+    );
+
+    const result = {};
+
+    elementsKeys.forEach((key) => {
+      result[key] = elements[key].checked;
+    });
+    onChange(result);
+  };
 
   return (
-    <form>
-      <label>
+    <form style={styles.form} onChange={handleChange}>
+      {categories.map((category) => (
+        <label style={styles.label} key={category}>
+          {category}
+          <input type="checkbox" name={category} />
+        </label>
+      ))}
+
+      {/* <label>
         One
         <input
           type="checkbox"
@@ -47,7 +74,7 @@ export default function Control({ onChange }) {
           checked={four}
           onChange={(e) => setFour(e.target.checked)}
         />
-      </label>
+      </label> */}
     </form>
   );
 }
