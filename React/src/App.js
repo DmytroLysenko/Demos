@@ -1,7 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import List from "./List";
+import Clock from "./Clock";
+import Count from "./Count";
 
 const list = [
   { id: 1, name: "one" },
@@ -17,6 +18,8 @@ const list = [
 function App() {
   return (
     <div className="App">
+      <Clock initTime={new Date()} />
+      <Count />
       <List list={list} />
     </div>
   );
